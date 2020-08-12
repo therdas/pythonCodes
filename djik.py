@@ -2,6 +2,9 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import time
 
+from matplotlib import pyplot as plt
+mng = plt.get_current_fig_manager()
+mng.full_screen_toggle()
 
 G = nx.Graph()
 
@@ -39,7 +42,9 @@ shortestDistanceMap = {
 nodeList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 
 nx.draw(G, pos = L, with_labels=True, font_weight="bold")
-
+edge_labels = nx.get_edge_attributes(G,'weight')
+nx.draw_networkx_edge_labels(G, L, labels = edge_labels)
+print(":::::::::::::::::::::::::::::::",edge_labels)
 
 start = 'A'
 end = 'F'
@@ -82,7 +87,7 @@ while True:
     else:
         break
 
-    time.sleep(1)
+    time.sleep(2)
 
     
 
@@ -98,10 +103,10 @@ while toVisit != start:
     toVisit = nextVertex
 
     #Wait
-    time.sleep(0.5)    
+    time.sleep(1)    
     
 
 print(shortestDistanceMap)
-
 plt.show()
+
 
